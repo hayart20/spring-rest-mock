@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
+ * @RestController is a convenience annotation that does nothing more than adding the @Controller and @ResponseBody annotations.
  * @author haykh
  */
-@RestController //@RestController is a convenience annotation that does nothing more than adding the @Controller and @ResponseBody annotations
+@RestController
 @RequestMapping("/barev")
-public class SpringRestController {
+public class MyRestController {
 //Spring lets you return data directly from the controller, without looking for a view, using the @ResponseBody annotation on a method
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public String hello(@PathVariable String name) {
