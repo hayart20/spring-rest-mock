@@ -29,7 +29,7 @@ public class MyMongoServiceImpl implements MyMongoService {
     public List<String> getNames() {
         List<String> results = new ArrayList<>();
         System.out.println("am.developer.component.MongoServiceImpl.getNames()");
-      /*  Person personAchilles = new Person();
+       /* Person personAchilles = new Person();
 				personAchilles.setPersonId(1l);
 				personAchilles.setName("Achilles");
 				personRepo.save(personAchilles);*/
