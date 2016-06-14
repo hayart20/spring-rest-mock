@@ -6,12 +6,14 @@
 
 
 
+import am.developer.component.MyMongoService;
 import am.developer.rest.MyRestController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
@@ -52,6 +54,7 @@ public class MyRestControllerTest {
     @Autowired
     private WebApplicationContext wac;
     private MockMvc mockMvc;
+    MyMongoService service;
 
     @Before
     public void setup() {

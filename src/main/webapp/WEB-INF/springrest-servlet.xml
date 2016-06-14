@@ -7,6 +7,7 @@
 
  <mvc:annotation-driven/>
 <context:component-scan base-package="am.developer.rest" />
-
+<context:component-scan base-package="am.developer.component" />
+<context:component-scan base-package="am.developer.repo" />
 </beans>
 

@@ -4,6 +4,7 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import am.developer.entity.Person;
+import org.springframework.stereotype.Service;
 
 public interface PersonRepo extends CrudRepository<Person, Long>
 {

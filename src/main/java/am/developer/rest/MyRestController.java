@@ -5,10 +5,13 @@
  */
 package am.developer.rest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import am.developer.component.MyMongoService;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 /**
  *
@@ -18,10 +21,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/barev")
 public class MyRestController {
+    
+    @Autowired
+    MyMongoService myMongoService;
+    
 //Spring lets you return data directly from the controller, without looking for a view, using the @ResponseBody annotation on a method
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public String hello(@PathVariable String name) {
         String result = "uraaaa Hello " + name;
+        myMongoService.getNames();
         return result;
     }
 }
