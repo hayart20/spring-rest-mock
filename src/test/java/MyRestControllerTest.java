@@ -49,10 +49,14 @@ public class MyRestControllerTest {
         this.mockMvc = MockMvcBuilders.webAppContextSetup( this.webApplicationContext ).build();
     }
 
-    @Test @Ignore
+    @Test
     public void addPerson() throws Exception {
 
-            mockMvc.perform(post("/person/hayk/26").accept(MediaType.APPLICATION_JSON))
+            mockMvc.perform(post("/person/add")
+                    .param("id", "4")
+                    .param("name", "Joe")
+                    .param("age", "56")
+                    .accept(MediaType.APPLICATION_JSON))
                 .andDo(print()) // print the request/response in the console
                 .andExpect(status().isOk());
        

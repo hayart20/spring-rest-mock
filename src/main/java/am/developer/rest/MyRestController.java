@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -50,16 +51,8 @@ public class MyRestController {
         //return persons;
     }
     
-    @RequestMapping(value = "/{name}/{age}/", method = RequestMethod.POST)
-    public ResponseEntity<Void> personAdd(@PathVariable String name, @PathVariable int age) {
-        /*String result = "name= " + name + " age=" + age;
-        Person personAchilles = new Person();
-                personAchilles.setPersonId(2l);
-                personAchilles.setName(name);
-                personAchilles.setAge(age);
-        myMongoService.addPerson(personAchilles);
-        return result;*/
-        
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public ResponseEntity<Void> personAdd(@RequestParam("name") Long id, @RequestParam("name") String name, @RequestParam("age") int age) {
         LOG.info("creating new person: {}", name, age);
 /*
         if (userService.exists(user)){
@@ -68,7 +61,7 @@ public class MyRestController {
         }
 */
         Person personAchilles = new Person();
-                personAchilles.setPersonId(2l);
+                personAchilles.setPersonId(id);
                 personAchilles.setName(name);
                 personAchilles.setAge(age);
         myMongoService.addPerson(personAchilles);
