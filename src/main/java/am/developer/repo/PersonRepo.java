@@ -6,7 +6,9 @@ import org.springframework.data.repository.CrudRepository;
 import am.developer.entity.Person;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Repository
 public interface PersonRepo extends CrudRepository<Person, Long>
 {
 		@Query("{'name' : ?0}")

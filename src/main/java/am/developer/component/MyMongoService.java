@@ -5,14 +5,23 @@
  */
 package am.developer.component;
 
+import am.developer.entity.Person;
 import java.util.List;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author haykh
  */
 public interface MyMongoService {
-    List<String> getNames();
+    /**
+     * get all person list.
+     * @return 
+     */
+    List<Person> getPersons();
+    
+    /**
+     * add person.
+     * @param person
+     */
+    void addPerson(Person person);
 }

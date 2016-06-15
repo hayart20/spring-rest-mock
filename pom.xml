@@ -7,6 +7,8 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>RestBackend</name>
     <url>http://maven.apache.org</url>
+    
+   
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -24,12 +26,18 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
+        </dependency> 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
+       
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
@@ -45,8 +53,22 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>4.2.5.RELEASE</version>
+            <version>${spring.version}</version>
             <type>jar</type>
+        </dependency>
+        
+        
+         <!-- Needed for JSON View -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <!-- logging -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -58,6 +80,7 @@
             <artifactId>spring-data-jpa</artifactId>
             <version>1.6.0.RELEASE</version>
         </dependency>
+       
     </dependencies>
     <build>
         <finalName>RestBackend</finalName>
@@ -78,6 +101,8 @@
     <properties>
         <spring.version>4.3.0.RELEASE</spring.version>
         <jdk.version>1.7</jdk.version>
+        <jackson.version>2.7.4</jackson.version>
+        <logback.version>1.1.7</logback.version>
     </properties>
 
   

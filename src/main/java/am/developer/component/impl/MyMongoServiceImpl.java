@@ -9,6 +9,7 @@ import am.developer.component.MyMongoService;
 import am.developer.entity.Person;
 import am.developer.repo.PersonRepo;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,19 +23,26 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class MyMongoServiceImpl implements MyMongoService {
 
-    //@Autowired
-    //PersonRepo personRepo;
+    @Autowired
+    PersonRepo personRepo;
     
     @Override
-    public List<String> getNames() {
-        List<String> results = new ArrayList<>();
-        System.out.println("am.developer.component.MongoServiceImpl.getNames()");
-       /* Person personAchilles = new Person();
-				personAchilles.setPersonId(1l);
-				personAchilles.setName("Achilles");
-				personRepo.save(personAchilles);*/
-        System.out.println("ens sss");                                
-        return results;
+    public void addPerson(Person person) {
+        //List<String> results = new ArrayList<>();
+	personRepo.save(person);
+        //return results;
     }
     
+    @Override
+    public List<Person> getPersons(){
+        List<Person> resultList = new ArrayList<Person>();
+        Iterable<Person> all = personRepo.findAll();
+        Iterator iterator = all.iterator();
+        while (iterator.hasNext()) {
+            Person person = (Person) iterator.next ();
+            //System.out.println(element);
+            resultList.add(person);
+        }
+        return resultList;
+    }
 }

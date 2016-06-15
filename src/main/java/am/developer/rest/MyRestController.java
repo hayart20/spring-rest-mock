@@ -11,7 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import am.developer.component.MyMongoService;
+import am.developer.entity.Person;
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 /**
  *
@@ -19,17 +26,55 @@ import org.springframework.beans.factory.annotation.Qualifier;
  * @author haykh
  */
 @RestController
-@RequestMapping("/barev")
+@RequestMapping("/person")
 public class MyRestController {
+    
+    private final Logger LOG = LoggerFactory.getLogger(MyRestController.class);
     
     @Autowired
     MyMongoService myMongoService;
     
 //Spring lets you return data directly from the controller, without looking for a view, using the @ResponseBody annotation on a method
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
-    public String hello(@PathVariable String name) {
-        String result = "uraaaa Hello " + name;
-        myMongoService.getNames();
-        return result;
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public ResponseEntity<List<Person>> getAll() {
+    
+        LOG.info("getting all persons with offset: {}, and count: ");
+
+        List<Person> persons = myMongoService.getPersons();
+
+        if (persons == null || persons.isEmpty()){
+            LOG.info("no persons found");
+            return new ResponseEntity<List<Person>>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<List<Person>>(persons, HttpStatus.OK);
+        //return persons;
+    }
+    
+    @RequestMapping(value = "/{name}/{age}/", method = RequestMethod.POST)
+    public ResponseEntity<Void> personAdd(@PathVariable String name, @PathVariable int age) {
+        /*String result = "name= " + name + " age=" + age;
+        Person personAchilles = new Person();
+                personAchilles.setPersonId(2l);
+                personAchilles.setName(name);
+                personAchilles.setAge(age);
+        myMongoService.addPerson(personAchilles);
+        return result;*/
+        
+        LOG.info("creating new person: {}", name, age);
+/*
+        if (userService.exists(user)){
+            LOG.info("a user with name " + user.getUsername() + " already exists");
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        }
+*/
+        Person personAchilles = new Person();
+                personAchilles.setPersonId(2l);
+                personAchilles.setName(name);
+                personAchilles.setAge(age);
+        myMongoService.addPerson(personAchilles);
+
+        HttpHeaders headers = new HttpHeaders();
+        //headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri());
+        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 }
