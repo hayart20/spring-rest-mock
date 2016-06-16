@@ -52,7 +52,7 @@ public class MyRestController {
     }
     
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseEntity<Void> personAdd(@RequestParam("name") Long id, @RequestParam("name") String name, @RequestParam("age") int age) {
+    public ResponseEntity<Void> personAdd(@RequestParam("id") Long id, @RequestParam("name") String name, @RequestParam("age") int age) {
         LOG.info("creating new person: {}", name, age);
 /*
         if (userService.exists(user)){

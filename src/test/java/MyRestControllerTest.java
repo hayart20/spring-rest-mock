@@ -53,11 +53,11 @@ public class MyRestControllerTest {
     public void addPerson() throws Exception {
 
             mockMvc.perform(post("/person/add")
-                    .param("id", "4")
-                    .param("name", "Joe")
-                    .param("age", "56")
-                    .accept(MediaType.APPLICATION_JSON))
-                .andDo(print()) // print the request/response in the console
+                    .param("id", "40")
+                    .param("name", "Joe0")
+                    .param("age", "560")
+                    .accept(MediaType.APPLICATION_FORM_URLENCODED))
+                //.andDo(print()) // print the request/response in the console
                 .andExpect(status().isOk());
        
     }
